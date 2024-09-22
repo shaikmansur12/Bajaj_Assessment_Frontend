@@ -22,15 +22,16 @@ function App() {
 
     if (option === "Numbers") {
       filteredData = data.filter(item => !isNaN(item)); // filter numbers
+      setResponse({ numbers: filteredData });
     } else if (option === "Alphabets") {
       filteredData = data.filter(item => isNaN(item)); // filter alphabets
+      setResponse({ alphabets: filteredData });
     } else if (option === "Highest Lowercase Alphabet") {
-      filteredData = data
+      const highestLowercase = data
         .filter(item => item === item.toLowerCase() && isNaN(item)) // filter lowercase alphabets
-        .sort((a, b) => b.localeCompare(a))[0]; // get the highest alphabet
+        .sort((a, b) => b.localeCompare(a))[0]; // get the highest lowercase alphabet
+      setResponse({ highestLowercase: highestLowercase || "No lowercase alphabet found" });
     }
-
-    setResponse(filteredData ? filteredData : {});
   };
 
   return (
